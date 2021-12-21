@@ -47,9 +47,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         </asp:ScriptManager>
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-large w3-top" style ="position: fixed;">
-  <a href="./" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-car w3-margin-right"></i>Main Page</a>
-  <a href="./Cars.aspx" class="w3-bar-item w3-button w3-mobile">Cars</a>
-  <a href="./Admin_login.aspx" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Admin Login</a>
+  <a href="/Pages/Default.aspx" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-car w3-margin-right"></i>Main Page</a>
+  <a href="/Pages/Cars.aspx" class="w3-bar-item w3-button w3-mobile">Cars</a>
+  <a href="/Pages/Admin_login.aspx" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Admin Login</a>
 </div>
 
  <div class="container body-content">
