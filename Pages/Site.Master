@@ -3,64 +3,78 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head runat="server">
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title><%: Page.Title %> - Rent a Car</title>
 
-        <asp:PlaceHolder runat="server">
-            <%: Scripts.Render("~/bundles/modernizr") %>
-        </asp:PlaceHolder>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Rent a Car</title>
 
-        <webopt:bundlereference runat="server" path="~/Content/css" />
-        <!-- Template -->
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <link rel="stylesheet" href="../Template/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
 
-    <body class="w3-light-grey">
-        <style>
-            body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
-        </style>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <!-- Template -->
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="../Template/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-        <form runat="server">
-            <asp:ScriptManager runat="server">
-                <Scripts>
-                    <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                    <%--Framework Scripts--%>
-                    <asp:ScriptReference Name="MsAjaxBundle" />
-                    <asp:ScriptReference Name="jquery" />
-                    <asp:ScriptReference Name="bootstrap" />
-                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                    <asp:ScriptReference Name="WebFormsBundle" />
-                    <%--Site Scripts--%>
-                </Scripts>
-            </asp:ScriptManager>
+<body class="w3-light-grey">
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Raleway", Arial, Helvetica, sans-serif
+        }
+    </style>
 
-            <!-- Navigation Bar -->
-            <div class="w3-bar w3-white w3-large w3-top" style ="position: fixed;">
-            <a href="/Pages/Default.aspx" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-car w3-margin-right"></i>Main Page</a>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web"
+                    Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web"
+                    Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web"
+                    Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <!-- Navigation Bar -->
+        <div class="w3-bar w3-white w3-large w3-top" style="position: fixed; z-index: 1;">
+            <a href="/Pages/Default.aspx" class="w3-bar-item w3-button w3-red w3-mobile"><i
+                    class="fa fa-car w3-margin-right"></i>Main Page</a>
             <a href="/Pages/Cars.aspx" class="w3-bar-item w3-button w3-mobile">Cars</a>
-            <a href="/Pages/Admin_login.aspx" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Admin Login</a>
-            </div>
+            <a href="/Pages/Admin_login.aspx" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Admin
+                Login</a>
+        </div>
 
-            <!-- Main Content -->
-            <div class="container body-content">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                </asp:ContentPlaceHolder>
-            </div> 
+        <!-- Main Content -->
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
 
-            <!-- Footer -->
-            <footer class="w3-padding-32 w3-black w3-center w3-margin-top">
+        <!-- Footer -->
+        <footer class="w3-padding-32 w3-black w3-center w3-margin-top" style="z-index: -2; position: relative;">
             <h5>Find Us On</h5>
             <div class="w3-xlarge w3-padding-16">
                 <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -70,9 +84,11 @@
                 <i class="fa fa-twitter w3-hover-opacity"></i>
                 <i class="fa fa-linkedin w3-hover-opacity"></i>
             </div>
-            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-            </footer>
+            <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"
+                    class="w3-hover-text-green">w3.css</a></p>
+        </footer>
 
-        </form>
-    </body>
+    </form>
+</body>
+
 </html>
