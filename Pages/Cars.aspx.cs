@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Configuration;
-using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace asp
 {
@@ -13,8 +13,8 @@ namespace asp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            OleDbConnection db_connection =
-                new OleDbConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+            SqlConnection db_connection =
+                new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
 
             db_connection.Open();
         }

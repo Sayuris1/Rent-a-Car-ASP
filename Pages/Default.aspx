@@ -45,13 +45,14 @@
 
       <!-- Image of location/map -->
       <div class="w3-col m4">
-      <h3>Our Location:</h3>
-      <img class="w3-image" src="/jpgs/location.jpg" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
+          <h3>Our Location:</h3>
+          <img class="w3-image" src="/jpgs/location.jpg" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
       </div>
     </div>
 
     <div class="w3-panel w3-red w3-leftbar w3-padding-32">
       <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer Playstation, snow chains, children care, dog equipment, etc.</h6>
+    </div>
   </div>
 
 </asp:Content>
