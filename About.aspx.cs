@@ -13,6 +13,10 @@ namespace asp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            OleDbConnection db_connection =
+                new OleDbConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+
+            db_connection.Open();
         }
     }
 }
