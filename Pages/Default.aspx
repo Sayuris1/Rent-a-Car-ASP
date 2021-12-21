@@ -39,7 +39,7 @@
       <!-- About -->
       <div class="w3-col m3">
         <h3>About</h3>
-        <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
+        <h6>One does not have to waste time checking the schedules of buses or estimating the taxi prices. Which is why Auto Rental services will provide a diverse range of deals and offers for your traveling convenience.<br> Stands for exciting mobility and tailored solutions.<br> We lead in the car rental industry. High-quality customer service and seamless rental experience.<br> We always have vehicles available and in stock.<br> Many different makes and models to choose from</h6>
       <p class="w3-center">We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
       </div>
 
