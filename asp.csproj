@@ -109,6 +109,7 @@
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Global.asax" />
     <Content Include="Pages\Site.Master" />
+    <Content Include="Template\calendar.css" />
     <Content Include="Template\w3.css" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />

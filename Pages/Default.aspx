@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="asp._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Header Search Availability -->
+  <!-- Header Search Availability -->
   <header class="w3-display-container w3-content" style="max-width:1500px;">
     <img class="w3-image" src="/jpgs/start_car.jpg" alt="The Car" style="min-width:1000px" width="1500" height="800">
 
@@ -16,32 +16,21 @@
           <!-- Pick-Up -->
           <div class="w3-half w3-margin-bottom">
             <label><i class="fa fa-calendar-o"></i> Pick-Up</label>
-            <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
             <div class="calendarWrapper">
-   <asp:Calendar ID="Calendar1" 
-   runat="server" CssClass="myCalendar" 
-   DayNameFormat="Short" Font-Names="Tahoma"
-      OnDayRender="Calendar1_DayRender" 
-      OnVisibleMonthChanged="Calendar1_VisibleMonthChanged" 
-      cellspacing="0" cellpadding="0" title="Calendar" 
-      style="border-width: 1px; border-style: solid; font-family: Tahoma; 
-      border-collapse: collapse;">
-          <OtherMonthDayStyle CssClass="calDay otherMonthDay" />
-          <DayStyle CssClass="calDay" />
-          <DayHeaderStyle CssClass="calDayHeader" 
-          ForeColor="#2d3338" />
-          <SelectedDayStyle Font-Bold="True" 
-          CssClass="calDaySelected" />
-          <TodayDayStyle CssClass="calToday" />
-          <SelectorStyle CssClass="calSelector" />
-          <NextPrevStyle CssClass="calNextPrev" />
-          <TitleStyle CssClass="calTitle" />
-   </asp:Calendar>
-</div>
-                <DayHeaderStyle BackColor="#FF6666" />
-                <TodayDayStyle BackColor="Red" />
-                <WeekendDayStyle BackColor="#FF0066" />
+             <!-- Callendar --> 
+              <asp:Calendar ID="calendar_pick" runat="server" CssClass="myCalendar" DayNameFormat="Short"
+                Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
+                border-collapse: collapse;" OnDayRender="OnDayRender">
+                <OtherMonthDayStyle CssClass="calDay otherMonthDay" />
+                <DayStyle CssClass="calDay" />
+                <DayHeaderStyle CssClass="calDayHeader" ForeColor="#2d3338" />
+                <SelectedDayStyle Font-Bold="True" CssClass="calDaySelected" />
+                <TodayDayStyle CssClass="calToday" />
+                <SelectorStyle CssClass="calSelector" />
+                <NextPrevStyle CssClass="calNextPrev" />
+                <TitleStyle CssClass="calTitle" />
               </asp:Calendar>
+            </div>
           </div>
 
           <!-- Drop-Off -->

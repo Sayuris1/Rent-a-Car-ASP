@@ -13,5 +13,18 @@ namespace asp
         {
 
         }
+
+        protected void OnDayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < (System.DateTime.Now.AddDays(-1)))
+
+            {
+
+                e.Day.IsSelectable = false;
+
+                e.Cell.BackColor = System.Drawing.Color.DarkGray;
+
+            }
+        }
     }
 }
