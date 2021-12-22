@@ -22,7 +22,7 @@
             <div class="calendarWrapper">
               <asp:Calendar ID="calendar_pick" runat="server" CssClass="myCalendar" DayNameFormat="Short"
                 Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
-                border-collapse: collapse;" OnDayRender="OnDayRender">
+                border-collapse: collapse;" OnDayRender="OnDayRender" OnSelectionChanged="selection_changed">
                 <OtherMonthDayStyle CssClass="calDay otherMonthDay" />
                 <DayStyle CssClass="calDay" />
                 <DayHeaderStyle CssClass="calDayHeader" ForeColor="#2d3338" />
@@ -45,7 +45,7 @@
             <div class="calendarWrapper">
               <asp:Calendar ID="calendar_drop" runat="server" CssClass="myCalendar" DayNameFormat="Short"
                 Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
-                border-collapse: collapse;" OnDayRender="OnDayRender">
+                border-collapse: collapse;" OnDayRender="OnDayRender" OnSelectionChanged="selection_changed">
                 <OtherMonthDayStyle CssClass="calDay otherMonthDay" />
                 <DayStyle CssClass="calDay" />
                 <DayHeaderStyle CssClass="calDayHeader" ForeColor="#2d3338" />

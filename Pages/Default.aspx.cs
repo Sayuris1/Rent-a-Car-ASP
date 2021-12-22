@@ -9,13 +9,12 @@ namespace asp
 {
     public partial class _Default : Page
     {
-        DateTime pick_date_time = new DateTime();
-        DateTime drop_date_time = new DateTime();
-        int dates_to_pick = 0;
-        int dates_to_drop = 0;
+        static DateTime pick_date_time = new DateTime();
+        static DateTime drop_date_time = new DateTime();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["days_to_pick"] = -1;
+            Session["days_to_drop"] = -1;
         }
 
         protected void OnDayRender(object sender, DayRenderEventArgs e)
@@ -30,20 +29,26 @@ namespace asp
 
             }
         }
-        protected void pick_selection_changed(object sender, EventArgs e)
+        protected void selection_changed(object sender, EventArgs e)
         {
             pick_date_time = calendar_pick.SelectedDate;
-        }
-
-        protected void drop_selection_changed(object sender, EventArgs e)
-        {
             drop_date_time = calendar_drop.SelectedDate;
+
         }
 
         protected void search_clicked(object sender, EventArgs e)
         {
-            dates_to_pick = (DateTime.Now - pick_date_time).Days;
-            dates_to_drop = (DateTime.Now - drop_date_time).Days;
+            if (pick_date_time.Equals(DateTime.MinValue) || drop_date_time.Equals(DateTime.MinValue)) {
+
+            }
+
+            else {
+                Session["days_to_pick"] = (DateTime.Now - pick_date_time).Days;
+                Session["days_to_drop"] = (drop_date_time.AddDays(1) - DateTime.Now).Days;
+
+                Response.Redirect("Cars.aspx");
+            }
+            
         }
     }
 }

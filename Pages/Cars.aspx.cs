@@ -28,6 +28,9 @@ namespace asp
             Repeater car_repeater = (Repeater)Master.FindControl("MainContent").FindControl("car_repeater");
             car_repeater.DataSource = dataset_all_car_ids.Tables["car_types"];
             car_repeater.DataBind();
+
+            System.Diagnostics.Debug.WriteLine(Session["days_to_pick"]);
+            System.Diagnostics.Debug.WriteLine(Session["days_to_drop"]);
         }
     }
 }
