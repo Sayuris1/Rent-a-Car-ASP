@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="asp._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-  <!-- Header Search Availability -->
+    <!-- Header Search Availability -->
   <header class="w3-display-container w3-content" style="max-width:1500px;">
     <img class="w3-image" src="/jpgs/start_car.jpg" alt="The Car" style="min-width:1000px" width="1500" height="800">
 
@@ -18,7 +18,7 @@
             <div style="padding-bottom:20px; margin-left: 30%;">
               <label style="font-size: large;"><i class="fa fa-calendar-o"></i> Pick-Up</label>
             </div>
-            <!-- Callendar -->
+            <!-- Calendar -->
             <div class="calendarWrapper">
               <asp:Calendar ID="calendar_pick" runat="server" CssClass="myCalendar" DayNameFormat="Short"
                 Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
@@ -41,7 +41,7 @@
               <label style="font-size: large;"><i class="fa fa-calendar-o"></i> Drop-Off</label>
             </div>
 
-            <!-- Callendar -->
+            <!-- Calendar -->
             <div class="calendarWrapper">
               <asp:Calendar ID="calendar_drop" runat="server" CssClass="myCalendar" DayNameFormat="Short"
                 Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
@@ -61,8 +61,8 @@
         </div>
 
         <div style="padding: 3%; margin-left: 30%;">
-          <asp:Button ID="Button1" runat="server" Text=" Search A Car To Rent "
-            class="w3-button w3-dark-grey w3-margin-right" Font-Size="Large" />
+          <asp:Button ID="search_button" runat="server" Text=" Search A Car To Rent "
+            class="w3-button w3-dark-grey w3-margin-right" Font-Size="Large" OnClick="search_clicked" />
         </div>
       </div>
     </div>
