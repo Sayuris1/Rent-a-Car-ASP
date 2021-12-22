@@ -5,19 +5,21 @@
   <header class="w3-display-container w3-content" style="max-width:1500px;">
     <img class="w3-image" src="/jpgs/start_car.jpg" alt="The Car" style="min-width:1000px" width="1500" height="800">
 
-    <div class="w3-display-middle w3-padding w3-col l6 m8">
+    <div class="w3-display-middle w3-padding w3-col l9">
       <div class="w3-container w3-red">
         <h2><i class="fa fa-car w3-margin-right"></i>Rent a Car</h2>
       </div>
 
       <!-- Calendars -->
-      <div class="w3-container w3-white w3-padding-16">
-        <div class="w3-row-padding" style="margin:0 -16px;">
+      <div class="w3-container w3-white" style="padding-top: 20px; padding-left: 10%;">
+        <div class="w3-row-padding">
           <!-- Pick-Up -->
-          <div class="w3-half w3-margin-bottom">
-            <label><i class="fa fa-calendar-o"></i> Pick-Up</label>
+          <div class="w3-half w3-row-padding">
+            <div style="padding-bottom:20px; margin-left: 30%;">
+              <label style="font-size: large;"><i class="fa fa-calendar-o"></i> Pick-Up</label>
+            </div>
+            <!-- Callendar -->
             <div class="calendarWrapper">
-             <!-- Callendar --> 
               <asp:Calendar ID="calendar_pick" runat="server" CssClass="myCalendar" DayNameFormat="Short"
                 Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
                 border-collapse: collapse;" OnDayRender="OnDayRender">
@@ -34,15 +36,34 @@
           </div>
 
           <!-- Drop-Off -->
-          <div class="w3-half">
-            <label><i class="fa fa-calendar-o"></i> Drop-Off</label>
-            <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
+          <div class="w3-half w3-row-padding">
+            <div style="padding-bottom:20px; margin-left: 30%;">
+              <label style="font-size: large;"><i class="fa fa-calendar-o"></i> Drop-Off</label>
+            </div>
+
+            <!-- Callendar -->
+            <div class="calendarWrapper">
+              <asp:Calendar ID="calendar_drop" runat="server" CssClass="myCalendar" DayNameFormat="Short"
+                Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
+                border-collapse: collapse;" OnDayRender="OnDayRender">
+                <OtherMonthDayStyle CssClass="calDay otherMonthDay" />
+                <DayStyle CssClass="calDay" />
+                <DayHeaderStyle CssClass="calDayHeader" ForeColor="#2d3338" />
+                <SelectedDayStyle Font-Bold="True" CssClass="calDaySelected" />
+                <TodayDayStyle CssClass="calToday" />
+                <SelectorStyle CssClass="calSelector" />
+                <NextPrevStyle CssClass="calNextPrev" />
+                <TitleStyle CssClass="calTitle" />
+              </asp:Calendar>
+            </div>
           </div>
 
         </div>
 
-        <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search
-          availability</button>
+        <div style="padding: 3%; margin-left: 30%;">
+          <asp:Button ID="Button1" runat="server" Text=" Search A Car To Rent "
+            class="w3-button w3-dark-grey w3-margin-right" Font-Size="Large" />
+        </div>
       </div>
     </div>
   </header>
@@ -53,7 +74,8 @@
     <div class="w3-row-padding" id="about">
       <!-- About -->
       <div class="w3-col m3">
-        <h3>About</h3>
+        <h3>About
+        </h3>
         <h6>One does not have to waste time checking the schedules of buses or estimating the taxi prices. Which is why
           Auto Rental services will provide a diverse range of deals and offers for your traveling convenience.<br>
           Stands for exciting mobility and tailored solutions.<br> We lead in the car rental industry. High-quality
