@@ -43,7 +43,7 @@ namespace asp
             }
 
             else {
-                Session["days_to_pick"] = (DateTime.Now - pick_date_time).Days;
+                Session["days_to_pick"] = (pick_date_time.AddDays(1) - DateTime.Now).Days;
                 Session["days_to_drop"] = (drop_date_time.AddDays(1) - DateTime.Now).Days;
 
                 Response.Redirect("Cars.aspx");
