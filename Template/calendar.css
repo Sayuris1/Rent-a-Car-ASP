@@ -103,8 +103,8 @@
         -webkit-box-shadow: 1px 1px 8px 1px #8f8f8f;
         box-shadow: 1px 1px 8px 1px #8f8f8f;
         display: inline-block;
-        width: 52px !important;
-        height: 34px !important;
+        width: 52px;
+        height: 34px;
         border: 1px solid #ddd;
         padding-top: 6px;
         /*        margin-left: -1px;
@@ -210,12 +210,12 @@ table.details {
     }
 
     .myCalendar {
-        width: 296px; /*156px;*/
+        width: 156px; /*156px;*/
     }
 
         .myCalendar .calToday {
-            width: 42px !important;
-            height: 32px !important;
+            width: 42px ;
+            height: 32px ;
             padding-top: 1px;
         }
 

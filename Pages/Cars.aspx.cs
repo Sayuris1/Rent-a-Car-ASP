@@ -12,28 +12,27 @@ namespace asp
 {
     public partial class About : Page
     {
+        static DataSet dataset_all_car_ids = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {
-                SqlConnection db_connection =
-                    new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+            dataset_all_car_ids = new DataSet();
 
-                db_connection.Open();
+            SqlConnection db_connection =
+                new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
 
-                SqlCommand select_all_car_ids = new SqlCommand("SELECT DISTINCT car_types.id FROM car_types WHERE EXISTS (SELECT * FROM cars WHERE car_types.id = type_id AND NOT EXISTS (SELECT * FROM bookings WHERE cars.id = car_id AND days_to_drop >= " + Session["days_to_drop"] + " AND days_to_pick <= " + Session["days_to_pick"] + "))", db_connection);
-                SqlDataAdapter adapter_all_car_ids = new SqlDataAdapter(select_all_car_ids);
-                DataSet dataset_all_car_ids = new DataSet();
+            db_connection.Open();
 
-                adapter_all_car_ids.Fill(dataset_all_car_ids, "car_types");
+            SqlCommand select_all_car_ids = new SqlCommand("SELECT DISTINCT car_types.id FROM car_types WHERE EXISTS (SELECT * FROM cars WHERE car_types.id = type_id AND NOT EXISTS (SELECT * FROM bookings WHERE cars.id = car_id AND days_to_drop >= " + Session["days_to_drop"] + " AND days_to_pick <= " + Session["days_to_pick"] + "))", db_connection);
+            SqlDataAdapter adapter_all_car_ids = new SqlDataAdapter(select_all_car_ids);
 
-                Repeater car_repeater = (Repeater)Master.FindControl("MainContent").FindControl("car_repeater");
-                car_repeater.DataSource = dataset_all_car_ids.Tables["car_types"];
-                car_repeater.DataBind();
+            adapter_all_car_ids.Fill(dataset_all_car_ids, "car_types");
 
-                select_all_car_ids.Dispose();
-                db_connection.Close();
-            }
+            Repeater car_repeater = (Repeater)Master.FindControl("MainContent").FindControl("car_repeater");
+            car_repeater.DataSource = dataset_all_car_ids.Tables["car_types"];
+            car_repeater.DataBind();
+
+            select_all_car_ids.Dispose();
+            db_connection.Close();
         }
 
         protected void reserve_clicked(object sender, CommandEventArgs e)
@@ -43,15 +42,11 @@ namespace asp
 
                 db_connection.Open();
 
-            SqlCommand get_free_car_id = new SqlCommand("SELECT id, type_id FROM cars WHERE type_id = " + e.CommandArgument + " AND NOT EXISTS (SELECT * FROM bookings WHERE cars.id = car_id AND days_to_drop >= " + Session["days_to_drop"] + " AND days_to_pick <= " + Session["days_to_pick"] + ")", db_connection);
+            SqlCommand get_free_car_id = new SqlCommand("SELECT id, type_id FROM cars WHERE type_id = " + dataset_all_car_ids.Tables["car_types"].Rows[(Int32.Parse(e.CommandArgument.ToString()))][0]  + " AND NOT EXISTS (SELECT * FROM bookings WHERE cars.id = car_id AND days_to_drop >= " + Session["days_to_drop"] + " AND days_to_pick <= " + Session["days_to_pick"] + ")", db_connection);
             SqlDataAdapter adapter_free_car = new SqlDataAdapter(get_free_car_id);
             DataSet dataset_free_car = new DataSet();
 
             adapter_free_car.Fill(dataset_free_car, "car_ids");
-
-            //System.Diagnostics.Debug.WriteLine(dataset_free_car.Tables["car_ids"].Rows[0][0]);
-            //System.Diagnostics.Debug.WriteLine(dataset_free_car.Tables["car_ids"].Rows[0][1]);
-            //System.Diagnostics.Debug.WriteLine(e.CommandArgument);
 
             SqlCommand insert_new_booking = new SqlCommand("INSERT INTO bookings VALUES (" + dataset_free_car.Tables["car_ids"].Rows[0][0] + ", " + Session["days_to_pick"] + ", " + Session["days_to_drop"] + ")", db_connection);
             SqlDataAdapter adapter_booking = new SqlDataAdapter(insert_new_booking);
@@ -61,6 +56,26 @@ namespace asp
 
             get_free_car_id.Dispose();
             db_connection.Close();
+
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void OnDayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < (System.DateTime.Now.AddDays(-1)))
+
+            {
+
+                e.Day.IsSelectable = false;
+
+                e.Cell.BackColor = System.Drawing.Color.DarkGray;
+
+            }
+        }
+
+        protected void selection_changed(object sender, EventArgs e)
+        {
+
         }
     }
 }
