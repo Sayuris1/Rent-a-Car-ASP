@@ -19,8 +19,6 @@ namespace asp
 
             db_connection.Open();
 
-            //SqlCommand select_all_car_ids = new SqlCommand("SELECT id FROM car_types", db_connection);
-            //SqlCommand select_all_car_ids = new SqlCommand("SELECT DISTINCT car_types.id FROM car_types JOIN cars C ON NOT EXISTS (SELECT * FROM bookings WHERE C.id = car_id  )", db_connection);
             SqlCommand select_all_car_ids = new SqlCommand("SELECT DISTINCT car_types.id FROM car_types WHERE EXISTS (SELECT * FROM cars WHERE car_types.id = type_id AND NOT EXISTS (SELECT * FROM bookings WHERE cars.id = car_id AND days_to_drop >= " + Session["days_to_drop"] + " AND days_to_pick <= " + Session["days_to_pick"] + "))", db_connection);
             SqlDataAdapter adapter_all_car_ids = new SqlDataAdapter(select_all_car_ids);
             DataSet dataset_all_car_ids = new DataSet();
@@ -31,8 +29,15 @@ namespace asp
             car_repeater.DataSource = dataset_all_car_ids.Tables["car_types"];
             car_repeater.DataBind();
 
+            db_connection.Close();
+
             System.Diagnostics.Debug.WriteLine(Session["days_to_pick"]);
             System.Diagnostics.Debug.WriteLine(Session["days_to_drop"]);
+        }
+
+        protected void reserve_clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

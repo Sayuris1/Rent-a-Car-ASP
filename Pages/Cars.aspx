@@ -60,6 +60,8 @@
                         </div>
                         <hr>
 
+                        <asp:Button ID="reserve_button" runat="server" Text=" Click to Reserve Right Now !! "
+                            class="w3-button w3-deep-orange" style="margin-left: 35%; padding-right: 5%; padding-left: 5%;" Font-Size="Large" OnClick="reserve_clicked" />
                         <h4><strong>Extra Info</strong></h4>
                         <p>Our apartment is really clean and we like to keep it that way. Enjoy the lorem ipsum dolor
                             sit

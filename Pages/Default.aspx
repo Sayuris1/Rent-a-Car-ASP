@@ -7,7 +7,7 @@
 
     <div class="w3-display-middle w3-padding w3-col l9">
       <div class="w3-container w3-red">
-        <h2><i class="fa fa-car w3-margin-right"></i>Rent a Car</h2>
+        <h2><i class="fa fa-car w3-margin-right"></i>Rent a Car Today !!</h2>
       </div>
 
       <!-- Calendars -->
