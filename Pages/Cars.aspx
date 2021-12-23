@@ -15,9 +15,9 @@
                 <h6>per night</h6>
                 <hr>
                 <p><label><i class="fa fa-calendar-check-o"></i> Pick-Up</label></p>
-                <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>
+                <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required> -->
                 <p><label><i class="fa fa-calendar-o"></i> Drop-Off</label></p>
-                <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
+                <!-- <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required> -->
                 <p><button class="w3-button w3-block w3-green w3-left-align" type="submit"><i
                             class="fa fa-search w3-margin-right"></i> Search availability</button></p>
             </div>
@@ -61,7 +61,9 @@
                         <hr>
 
                         <asp:Button ID="reserve_button" runat="server" Text=" Click to Reserve Right Now !! "
-                            class="w3-button w3-deep-orange" style="margin-left: 35%; padding-right: 5%; padding-left: 5%;" Font-Size="Large" OnClick="reserve_clicked" />
+                            class="w3-button w3-deep-orange"
+                            style="margin-left: 35%; padding-right: 5%; padding-left: 5%;" Font-Size="Large"
+                            OnCommand="reserve_clicked" CommandArgument='<%# Container.ItemIndex + 1%>'/>
                         <h4><strong>Extra Info</strong></h4>
                         <p>Our apartment is really clean and we like to keep it that way. Enjoy the lorem ipsum dolor
                             sit
