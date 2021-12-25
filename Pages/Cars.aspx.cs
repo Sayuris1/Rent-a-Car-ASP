@@ -13,6 +13,9 @@ namespace asp
     public partial class About : Page
     {
         static DataSet dataset_all_car_ids = new DataSet();
+        static DateTime pick_date_time = new DateTime();
+        static DateTime drop_date_time = new DateTime();
+        static bool is_date_changed = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             dataset_all_car_ids = new DataSet();
@@ -33,6 +36,25 @@ namespace asp
 
             select_all_car_ids.Dispose();
             db_connection.Close();
+        }
+
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(Session["days_to_pick"]) == -1 || Convert.ToInt32(Session["days_to_drop"]) == -1){
+                Repeater car_repeater = (Repeater)Master.FindControl("MainContent").FindControl("car_repeater");
+                foreach (RepeaterItem item in car_repeater.Items){
+                    Button reserve_button = (Button)item.FindControl("reserve_button");
+                    reserve_button.Enabled = false;
+                    reserve_button.Text = " Please Search Before Booking !!! ";
+                }
+
+                
+            }
+
+            else {
+                calendar_pick.SelectedDate = pick_date_time;
+                calendar_drop.SelectedDate = drop_date_time;
+            }
         }
 
         protected void reserve_clicked(object sender, CommandEventArgs e)
@@ -73,9 +95,22 @@ namespace asp
             }
         }
 
-        protected void selection_changed(object sender, EventArgs e)
+         protected void selection_changed(object sender, EventArgs e)
         {
+            pick_date_time = calendar_pick.SelectedDate;
+            drop_date_time = calendar_drop.SelectedDate;
 
+            if (!pick_date_time.Equals(DateTime.MinValue) && !drop_date_time.Equals(DateTime.MinValue)){
+                Session["days_to_pick"] = (pick_date_time.AddDays(1) - DateTime.Now).Days;
+                Session["days_to_drop"] = (drop_date_time.AddDays(1) - DateTime.Now).Days;
+
+                Response.Redirect("Cars.aspx");
+            }
+        }
+
+        protected void item_command (object sender, RepeaterCommandEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("aaa");
         }
     }
 }

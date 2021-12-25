@@ -1,28 +1,52 @@
 ﻿<%@ Page EnableEventValidation="false" Title="About" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Cars.aspx.cs" Inherits="asp.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
- 
+
     <body class="w3-content w3-border-left w3-border-right">
 
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-light-grey w3-col l10" style="z-index:-1; width:460px; padding-top:80px; size: 60%;"
-            id="mySidebar">
-            <div class="w3-container w3-display-container w3-padding-16">
-                <i onclick="w3_close()"
-                    class="fa fa-remove w3-hide-large w3-button w3-transparent w3-display-topright"></i>
-                <h3>Rental</h3>
-                <h3>from $99</h3>
-                <h6>per night</h6>
-                <hr>
-                <p><label><i class="fa fa-calendar-check-o"></i> Pick-Up</label></p>
-                <p><label><i class="fa fa-calendar-o"></i> Drop-Off</label></p>
-                <p><button class="w3-button w3-block w3-green w3-left-align" type="submit"><i
-                            class="fa fa-search w3-margin-right"></i> Search availability</button></p>
+        <div class="w3-sidebar w3-light-grey" style="width: 21.5%; margin-top:40px;" id="mySidebar">
+            <div class="w3-container w3-display-container">
+                <h3>Rental starts at $99</h3>
+                <p><label style="font-size: large;"><i class="fa fa-calendar-check-o"></i> Pick-Up</label></p>
+                <!-- Calendar -->
+                <div class="calendarWrapper">
+                    <asp:Calendar ID="calendar_pick" runat="server" CssClass="myCalendar" DayNameFormat="Short"
+                        Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
+                        border-collapse: collapse; width: 350px;" OnDayRender="OnDayRender"
+                        OnSelectionChanged="selection_changed">
+                        <OtherMonthDayStyle CssClass="calDay otherMonthDay" />
+                        <DayStyle CssClass="calDay" />
+                        <DayHeaderStyle CssClass="calDayHeader" ForeColor="#2d3338" />
+                        <SelectedDayStyle Font-Bold="True" CssClass="calDaySelected" />
+                        <TodayDayStyle CssClass="calToday" />
+                        <SelectorStyle CssClass="calSelector" />
+                        <NextPrevStyle CssClass="calNextPrev" />
+                        <TitleStyle CssClass="calTitle" />
+                    </asp:Calendar>
+                </div>
+                <p><label style="font-size: large;"><i class="fa fa-calendar-o"></i> Drop-Off</label></p>
+                <!-- Calendar -->
+                <div class="calendarWrapper">
+                    <asp:Calendar ID="calendar_drop" runat="server" CssClass="myCalendar" DayNameFormat="Short"
+                        Font-Names="Tahoma" cellspacing="0" cellpadding="0" title="Calendar" style="border-width: 1px; border-style: solid; font-family: Tahoma; 
+                        border-collapse: collapse; width: 350px;" OnDayRender="OnDayRender"
+                        OnSelectionChanged="selection_changed">
+                        <OtherMonthDayStyle CssClass="calDay otherMonthDay" />
+                        <DayStyle CssClass="calDay" />
+                        <DayHeaderStyle CssClass="calDayHeader" ForeColor="#2d3338" />
+                        <SelectedDayStyle Font-Bold="True" CssClass="calDaySelected" />
+                        <TodayDayStyle CssClass="calToday" />
+                        <SelectorStyle CssClass="calSelector" />
+                        <NextPrevStyle CssClass="calNextPrev" />
+                        <TitleStyle CssClass="calTitle" />
+                    </asp:Calendar>
+                </div>
             </div>
-        </nav>
+        </div>
 
         <!-- !PAGE CONTENT! -->
-        <asp:Repeater id="car_repeater" runat="server">
+        <asp:Repeater id="car_repeater" runat="server" OnItemCommand="item_command">
             <ItemTemplate>
                 <div class="w3-main w3-white" style="margin-left:400px">
 
