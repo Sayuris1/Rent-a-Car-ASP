@@ -15,9 +15,22 @@ namespace asp
         static DataSet dataset_all_car_ids = new DataSet();
         static DateTime pick_date_time = new DateTime();
         static DateTime drop_date_time = new DateTime();
-        static bool is_date_changed = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack){
+                if (Convert.ToInt32(Session["days_to_pick"]) != -1 && Convert.ToInt32(Session["days_to_drop"]) != -1){
+                    pick_date_time = DateTime.Today.AddDays(Convert.ToInt32(Session["days_to_pick"]));
+                    drop_date_time = DateTime.Today.AddDays(Convert.ToInt32(Session["days_to_drop"]));
+                }
+                else {
+                    pick_date_time = DateTime.MinValue;
+                    drop_date_time = DateTime.MinValue;
+                }
+
+                calendar_pick.SelectedDate = pick_date_time;
+                calendar_drop.SelectedDate = drop_date_time;
+            }
+
             dataset_all_car_ids = new DataSet();
 
             SqlConnection db_connection =
@@ -40,6 +53,8 @@ namespace asp
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(Session["days_to_pick"]);
+            System.Diagnostics.Debug.WriteLine(Session["days_to_drop"]);
             if (Convert.ToInt32(Session["days_to_pick"]) == -1 || Convert.ToInt32(Session["days_to_drop"]) == -1){
                 Repeater car_repeater = (Repeater)Master.FindControl("MainContent").FindControl("car_repeater");
                 foreach (RepeaterItem item in car_repeater.Items){
@@ -47,13 +62,6 @@ namespace asp
                     reserve_button.Enabled = false;
                     reserve_button.Text = " Please Search Before Booking !!! ";
                 }
-
-                
-            }
-
-            else {
-                calendar_pick.SelectedDate = pick_date_time;
-                calendar_drop.SelectedDate = drop_date_time;
             }
         }
 
@@ -82,9 +90,24 @@ namespace asp
             Response.Redirect("Default.aspx");
         }
 
-        protected void OnDayRender(object sender, DayRenderEventArgs e)
+        protected void pick_render(object sender, DayRenderEventArgs e)
         {
-            if (e.Day.Date < (System.DateTime.Now.AddDays(-1)))
+            if (e.Day.Date < (System.DateTime.Today)
+                || (!drop_date_time.Equals(DateTime.MinValue) && e.Day.Date > drop_date_time))
+
+            {
+
+                e.Day.IsSelectable = false;
+
+                e.Cell.BackColor = System.Drawing.Color.DarkGray;
+
+            }
+        }
+
+        protected void drop_render(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < (System.DateTime.Today)
+                || (!pick_date_time.Equals(DateTime.MinValue) && e.Day.Date < pick_date_time))
 
             {
 
@@ -101,8 +124,8 @@ namespace asp
             drop_date_time = calendar_drop.SelectedDate;
 
             if (!pick_date_time.Equals(DateTime.MinValue) && !drop_date_time.Equals(DateTime.MinValue)){
-                Session["days_to_pick"] = (pick_date_time.AddDays(1) - DateTime.Now).Days;
-                Session["days_to_drop"] = (drop_date_time.AddDays(1) - DateTime.Now).Days;
+                Session["days_to_pick"] = (pick_date_time - DateTime.Today).Days;
+                Session["days_to_drop"] = (drop_date_time - DateTime.Today).Days;
 
                 Response.Redirect("Cars.aspx");
             }

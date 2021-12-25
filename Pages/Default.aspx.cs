@@ -16,7 +16,7 @@ namespace asp
             Session["days_to_pick"] = -1;
             Session["days_to_drop"] = -1;
 
-            if (IsCrossPagePostBack){
+            if (!IsPostBack){
                 pick_date_time = DateTime.MinValue;
                 drop_date_time = DateTime.MinValue;
             }
@@ -31,9 +31,10 @@ namespace asp
             }
         }
 
-        protected void OnDayRender(object sender, DayRenderEventArgs e)
+        protected void pick_render(object sender, DayRenderEventArgs e)
         {
-            if (e.Day.Date < (System.DateTime.Now.AddDays(-1)))
+            if (e.Day.Date < (DateTime.Today)
+                || (!drop_date_time.Equals(DateTime.MinValue) && e.Day.Date > drop_date_time))
 
             {
 
@@ -43,6 +44,21 @@ namespace asp
 
             }
         }
+
+        protected void drop_render(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date < (DateTime.Today)
+                || (!pick_date_time.Equals(DateTime.MinValue) && e.Day.Date < pick_date_time))
+
+            {
+
+                e.Day.IsSelectable = false;
+
+                e.Cell.BackColor = System.Drawing.Color.DarkGray;
+
+            }
+        }
+
         protected void selection_changed(object sender, EventArgs e)
         {
             pick_date_time = calendar_pick.SelectedDate;
@@ -57,13 +73,9 @@ namespace asp
 
         protected void search_clicked(object sender, EventArgs e)
         {
-            if (pick_date_time.Equals(DateTime.MinValue) || drop_date_time.Equals(DateTime.MinValue)) {
-
-            }
-
-            else {
-                Session["days_to_pick"] = (pick_date_time.AddDays(1) - DateTime.Now).Days;
-                Session["days_to_drop"] = (drop_date_time.AddDays(1) - DateTime.Now).Days;
+            if (!pick_date_time.Equals(DateTime.MinValue) && !drop_date_time.Equals(DateTime.MinValue)){
+                Session["days_to_pick"] = (pick_date_time - DateTime.Today).Days;
+                Session["days_to_drop"] = (drop_date_time - DateTime.Today).Days;
 
                 Response.Redirect("Cars.aspx");
             }
