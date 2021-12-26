@@ -75,11 +75,11 @@
         <div class="w3-sidebar w3-bar-block w3-light-grey w3-card"
             style="width:130px">
             <h5 class="w3-bar-item">Tables</h5>
-            <asp:Button class="w3-bar-item w3-button w3-hover-red" id="car_types_tab" Text="Car Types"
+            <asp:Button CssClass="w3-bar-item w3-button w3-hover-red" id="car_types_tab" Text="Car Types"
                 OnClick="car_types_tab_clicked" runat="server" />
-            <asp:Button class="w3-bar-item w3-button w3-hover-red" id="cars_tab" Text="Cars" OnClick="cars_tab_clicked"
+            <asp:Button CssClass="w3-bar-item w3-button w3-hover-red" id="cars_tab" Text="Cars" OnClick="cars_tab_clicked"
                 runat="server" />
-            <asp:Button class="w3-bar-item w3-button w3-hover-red" id="Bookings_tab" Text="Bookings"
+            <asp:Button CssClass="w3-bar-item w3-button w3-hover-red" id="Bookings_tab" Text="Bookings"
                 OnClick="bookings_tab_clicked" runat="server" />
         </div>
     </asp:Panel>

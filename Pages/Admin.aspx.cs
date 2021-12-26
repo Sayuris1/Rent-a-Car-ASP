@@ -10,6 +10,7 @@ namespace asp.Pages
     public partial class Admin : System.Web.UI.Page
     {
         static bool is_logged_in = false;
+        static string last_clicked;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (is_logged_in){
@@ -33,10 +34,40 @@ namespace asp.Pages
         }
         
         protected void car_types_tab_clicked(object sender, EventArgs e){
+            Button clicked = (Button) sender;
+            clicked.CssClass = clicked.CssClass.Replace("w3-hover-red", "w3-red");
+
+            if (last_clicked != null){
+                Button last_button = (Button) Master.FindControl("MainContent").FindControl(last_clicked);
+                last_button.CssClass = last_button.CssClass.Replace("w3-red", "w3-hover-red");
+            }
+            
+
+            last_clicked = clicked.ID;
         }
         protected void cars_tab_clicked(object sender, EventArgs e){
+            Button clicked = (Button) sender;
+            clicked.CssClass = clicked.CssClass.Replace("w3-hover-red", "w3-red");
+
+            if (last_clicked != null){
+                Button last_button = (Button) Master.FindControl("MainContent").FindControl(last_clicked);
+                last_button.CssClass = last_button.CssClass.Replace("w3-red", "w3-hover-red");
+            }
+            
+
+            last_clicked = clicked.ID;
         }
         protected void bookings_tab_clicked(object sender, EventArgs e){
+            Button clicked = (Button) sender;
+            clicked.CssClass = clicked.CssClass.Replace("w3-hover-red", "w3-red");
+
+            if (last_clicked != null){
+                Button last_button = (Button) Master.FindControl("MainContent").FindControl(last_clicked);
+                last_button.CssClass = last_button.CssClass.Replace("w3-red", "w3-hover-red");
+            }
+            
+
+            last_clicked = clicked.ID;
         }
     }
 }
