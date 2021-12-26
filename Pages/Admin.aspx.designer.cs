@@ -21,6 +21,7 @@ namespace asp.Pages
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Login Login1;
+        protected global::System.Web.UI.WebControls.Login admin_login;
+        protected global::System.Web.UI.WebControls.Panel logged_in_panel;
     }
 }
