@@ -64,7 +64,7 @@
             <a href="/Pages/Default.aspx" class="w3-bar-item w3-button w3-red w3-mobile"><i
                     class="fa fa-car w3-margin-right"></i>Main Page</a>
             <a href="/Pages/Cars.aspx" class="w3-bar-item w3-button w3-mobile">Cars</a>
-            <a href="/Pages/Admin_login.aspx" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Admin
+            <a href="/Pages/Admin.aspx" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Admin
                 Login</a>
         </div>
 

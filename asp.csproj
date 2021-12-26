@@ -105,6 +105,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\Admin.aspx" />
     <Content Include="Pages\Cars.aspx" />
     <Content Include="Pages\Default.aspx" />
     <Content Include="Pages\Global.asax" />
@@ -116,6 +117,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Pages\Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Cars.aspx.cs">
       <DependentUpon>Cars.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -123,7 +132,6 @@
     <Compile Include="Pages\Cars.aspx.designer.cs">
       <DependentUpon>Cars.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

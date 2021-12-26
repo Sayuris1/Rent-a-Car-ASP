@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace asp
+namespace asp.Pages
 {
 
 
-    public partial class About
+    public partial class Cars
     {
 
         /// <summary>

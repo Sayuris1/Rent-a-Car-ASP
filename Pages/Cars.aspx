@@ -1,8 +1,6 @@
-﻿<%@ Page EnableEventValidation="false" Title="About" Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Cars.aspx.cs" Inherits="asp.About" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="Cars.aspx.cs" Inherits="asp.Pages.Cars" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <body class="w3-content w3-border-left w3-border-right">
+<asp:content id="Content1" ContentPlaceHolderID="MainContent" runat="server" class="w3-content w3-border-left w3-border-right">
 
         <!-- Sidebar/menu -->
         <div class="w3-sidebar w3-light-grey" style="width: 21.5%; margin-top:40px;" id="mySidebar">
@@ -104,5 +102,4 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-    </body>
-</asp:Content>
+    </asp:content>
