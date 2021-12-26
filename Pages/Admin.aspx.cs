@@ -53,6 +53,7 @@ namespace asp.Pages
             active.Visible = false;
             
             last_clicked = clicked.ID;
+            active_tab = active.ID;
         }
         protected void cars_tab_clicked(object sender, EventArgs e){
             SqlConnection db_connection =
@@ -88,6 +89,7 @@ namespace asp.Pages
             active.Visible = false;
             
             last_clicked = clicked.ID;
+            active_tab = active.ID;
         }
         protected void bookings_tab_clicked(object sender, EventArgs e){
             Button clicked = (Button) sender;
@@ -102,6 +104,113 @@ namespace asp.Pages
             active.Visible = false;
             
             last_clicked = clicked.ID;
+            active_tab = active.ID;
+        }
+        protected void edit_command(Object sender, DataListCommandEventArgs e) {
+            car_list.EditItemIndex = e.Item.ItemIndex;
+
+            SqlConnection db_connection =
+                new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+
+            db_connection.Open();
+
+            DataSet cars_dataset = new DataSet();
+            SqlCommand select_cars = new SqlCommand("SELECT cars.id, cars.type_id, car_types.name FROM cars JOIN car_types ON cars.type_id = car_types.id", db_connection);
+            SqlDataAdapter adapter_cars = new SqlDataAdapter(select_cars);
+
+            adapter_cars.Fill(cars_dataset, "cars");
+              
+            DataList datalist_cars = (DataList)Master.FindControl("MainContent").FindControl("car_list");
+            datalist_cars.DataSource = cars_dataset.Tables["cars"];
+            datalist_cars.DataBind();
+
+            select_cars.Dispose();
+            db_connection.Close();
+        }
+
+        protected void cancel_command(Object sender, DataListCommandEventArgs e) {
+            car_list.EditItemIndex = -1;
+
+            SqlConnection db_connection =
+                new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+
+            db_connection.Open();
+
+            DataSet cars_dataset = new DataSet();
+            SqlCommand select_cars = new SqlCommand("SELECT cars.id, cars.type_id, car_types.name FROM cars JOIN car_types ON cars.type_id = car_types.id", db_connection);
+            SqlDataAdapter adapter_cars = new SqlDataAdapter(select_cars);
+
+            adapter_cars.Fill(cars_dataset, "cars");
+              
+            DataList datalist_cars = (DataList)Master.FindControl("MainContent").FindControl("car_list");
+            datalist_cars.DataSource = cars_dataset.Tables["cars"];
+            datalist_cars.DataBind();
+
+            select_cars.Dispose();
+            db_connection.Close();
+        }
+
+        protected void delete_command(Object sender, DataListCommandEventArgs e) {
+            car_list.EditItemIndex = -1;
+
+            SqlConnection db_connection =
+                new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+
+            db_connection.Open();
+
+            DataSet delete_dataset = new DataSet();
+            string delete_id = ((Label)e.Item.FindControl("edit_car_id")).Text;
+
+            SqlCommand delete_command = new SqlCommand("DELETE FROM cars WHERE id=" + delete_id, db_connection);
+            SqlDataAdapter adapter_delete = new SqlDataAdapter(delete_command);
+
+            adapter_delete.DeleteCommand = delete_command;
+            adapter_delete.DeleteCommand.ExecuteNonQuery();
+
+            DataSet cars_dataset = new DataSet();
+            SqlCommand select_cars = new SqlCommand("SELECT cars.id, cars.type_id, car_types.name FROM cars JOIN car_types ON cars.type_id = car_types.id", db_connection);
+            SqlDataAdapter adapter_cars = new SqlDataAdapter(select_cars);
+
+            adapter_cars.Fill(cars_dataset, "cars");
+              
+            DataList datalist_cars = (DataList)Master.FindControl("MainContent").FindControl("car_list");
+            datalist_cars.DataSource = cars_dataset.Tables["cars"];
+            datalist_cars.DataBind();
+
+            select_cars.Dispose();
+            db_connection.Close();
+        }
+
+        protected void update_command(Object sender, DataListCommandEventArgs e) {
+            car_list.EditItemIndex = -1;
+
+            SqlConnection db_connection =
+                new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+
+            db_connection.Open();
+
+            DataSet update_dataset = new DataSet();
+            string update_id = ((Label)e.Item.FindControl("edit_car_id")).Text;
+            string update_type_id = ((TextBox)e.Item.FindControl("edit_car_type_id")).Text;
+
+            SqlCommand update_command = new SqlCommand("Update cars SET type_id=" + update_type_id + "WHERE id=" + update_id, db_connection);
+            SqlDataAdapter adapter_update = new SqlDataAdapter(update_command);
+
+            adapter_update.UpdateCommand = update_command;
+            adapter_update.UpdateCommand.ExecuteNonQuery();
+
+            DataSet cars_dataset = new DataSet();
+            SqlCommand select_cars = new SqlCommand("SELECT cars.id, cars.type_id, car_types.name FROM cars JOIN car_types ON cars.type_id = car_types.id", db_connection);
+            SqlDataAdapter adapter_cars = new SqlDataAdapter(select_cars);
+
+            adapter_cars.Fill(cars_dataset, "cars");
+              
+            DataList datalist_cars = (DataList)Master.FindControl("MainContent").FindControl("car_list");
+            datalist_cars.DataSource = cars_dataset.Tables["cars"];
+            datalist_cars.DataBind();
+
+            select_cars.Dispose();
+            db_connection.Close();
         }
     }
 }

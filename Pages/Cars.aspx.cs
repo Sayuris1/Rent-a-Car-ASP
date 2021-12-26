@@ -8,24 +8,17 @@ using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 
-namespace asp.Pages
-{
-    public partial class Cars : System.Web.UI.Page
-    {
+namespace asp.Pages {
+    public partial class Cars: System.Web.UI.Page {
         static DataSet dataset_all_car_ids = new DataSet();
         static DateTime pick_date_time = new DateTime();
         static DateTime drop_date_time = new DateTime();
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                if (Convert.ToInt32(Session["days_to_pick"]) != -1 && Convert.ToInt32(Session["days_to_drop"]) != -1)
-                {
+        protected void Page_Load(object sender, EventArgs e) {
+            if (!IsPostBack) {
+                if (Convert.ToInt32(Session["days_to_pick"]) != -1 && Convert.ToInt32(Session["days_to_drop"]) != -1) {
                     pick_date_time = DateTime.Today.AddDays(Convert.ToInt32(Session["days_to_pick"]));
                     drop_date_time = DateTime.Today.AddDays(Convert.ToInt32(Session["days_to_drop"]));
-                }
-                else
-                {
+                } else {
                     pick_date_time = DateTime.MinValue;
                     drop_date_time = DateTime.MinValue;
                 }
@@ -34,6 +27,10 @@ namespace asp.Pages
                 calendar_drop.SelectedDate = drop_date_time;
             }
 
+
+        }
+
+        protected void Page_LoadComplete(object sender, EventArgs e) {
             dataset_all_car_ids = new DataSet();
 
             SqlConnection db_connection =
@@ -45,42 +42,32 @@ namespace asp.Pages
             SqlDataAdapter adapter_all_car_ids = new SqlDataAdapter(select_all_car_ids);
 
             adapter_all_car_ids.Fill(dataset_all_car_ids, "car_types");
-              
-            Repeater car_repeater = (Repeater)Master.FindControl("MainContent").FindControl("car_repeater");
+
+            Repeater car_repeater = (Repeater) Master.FindControl("MainContent").FindControl("car_repeater");
             car_repeater.DataSource = dataset_all_car_ids.Tables["car_types"];
             car_repeater.DataBind();
 
             select_all_car_ids.Dispose();
             db_connection.Close();
-        }
 
-        protected void Page_LoadComplete(object sender, EventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine(Session["days_to_pick"]);
-            System.Diagnostics.Debug.WriteLine(Session["days_to_drop"]);
-            if (Convert.ToInt32(Session["days_to_pick"]) == -1 || Convert.ToInt32(Session["days_to_drop"]) == -1)
-            {
-                Repeater car_repeater = (Repeater)Master.FindControl("MainContent").FindControl("car_repeater");
-                foreach (RepeaterItem item in car_repeater.Items)
-                {
-                    Button reserve_button = (Button)item.FindControl("reserve_button");
+            if (Convert.ToInt32(Session["days_to_pick"]) == -1 || Convert.ToInt32(Session["days_to_drop"]) == -1) {
+                foreach(RepeaterItem item in car_repeater.Items) {
+                    Button reserve_button = (Button) item.FindControl("reserve_button");
                     reserve_button.Enabled = false;
                     reserve_button.Text = " Please Search Before Booking !!! ";
                 }
             }
 
             int i = 0;
-            foreach (RepeaterItem item in car_repeater.Items)
-            {
-                Image car_img = (Image)item.FindControl("car_img");
+            foreach(RepeaterItem item in car_repeater.Items) {
+                Image car_img = (Image) item.FindControl("car_img");
                 car_img.ImageUrl = "/jpgs/" + dataset_all_car_ids.Tables["car_types"].Rows[i++][7].ToString().Trim() + ".jpg";
             }
         }
 
-        protected void reserve_clicked(object sender, CommandEventArgs e)
-        {
+        protected void reserve_clicked(object sender, CommandEventArgs e) {
             SqlConnection db_connection =
-                    new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
+                new SqlConnection(WebConfigurationManager.ConnectionStrings["db"].ConnectionString);
 
             db_connection.Open();
 
@@ -102,10 +89,9 @@ namespace asp.Pages
             Response.Redirect("Default.aspx");
         }
 
-        protected void pick_render(object sender, DayRenderEventArgs e)
-        {
-            if (e.Day.Date < (System.DateTime.Today)
-                || (!drop_date_time.Equals(DateTime.MinValue) && e.Day.Date > drop_date_time))
+        protected void pick_render(object sender, DayRenderEventArgs e) {
+            if (e.Day.Date < (System.DateTime.Today) ||
+                (!drop_date_time.Equals(DateTime.MinValue) && e.Day.Date > drop_date_time))
 
             {
 
@@ -116,10 +102,9 @@ namespace asp.Pages
             }
         }
 
-        protected void drop_render(object sender, DayRenderEventArgs e)
-        {
-            if (e.Day.Date < (System.DateTime.Today)
-                || (!pick_date_time.Equals(DateTime.MinValue) && e.Day.Date < pick_date_time))
+        protected void drop_render(object sender, DayRenderEventArgs e) {
+            if (e.Day.Date < (System.DateTime.Today) ||
+                (!pick_date_time.Equals(DateTime.MinValue) && e.Day.Date < pick_date_time))
 
             {
 
@@ -130,13 +115,11 @@ namespace asp.Pages
             }
         }
 
-        protected void selection_changed(object sender, EventArgs e)
-        {
+        protected void selection_changed(object sender, EventArgs e) {
             pick_date_time = calendar_pick.SelectedDate;
             drop_date_time = calendar_drop.SelectedDate;
 
-            if (!pick_date_time.Equals(DateTime.MinValue) && !drop_date_time.Equals(DateTime.MinValue))
-            {
+            if (!pick_date_time.Equals(DateTime.MinValue) && !drop_date_time.Equals(DateTime.MinValue)) {
                 Session["days_to_pick"] = (pick_date_time - DateTime.Today).Days;
                 Session["days_to_drop"] = (drop_date_time - DateTime.Today).Days;
 
@@ -144,8 +127,7 @@ namespace asp.Pages
             }
         }
 
-        protected void item_command(object sender, RepeaterCommandEventArgs e)
-        {
+        protected void item_command(object sender, RepeaterCommandEventArgs e) {
             System.Diagnostics.Debug.WriteLine("aaa");
         }
     }

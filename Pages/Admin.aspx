@@ -91,7 +91,8 @@
         <asp:Panel ID="cars_panel" runat="server" style="margin-left: 10%;">
             <asp:DataList CssClass="w3-table-all w3-xlarge" style="width: 97%;" id="car_list" BorderColor="black"
                 CellPadding="5" CellSpacing="5" RepeatDirection="Vertical" RepeatLayout="Table" runat="server"
-                OnEditCommand="edit_command">
+                OnEditCommand="edit_command" OnUpdateCommand="update_command" OnDeleteCommand="delete_command"
+                OnCancelCommand="cancel_command">
                 <ItemTemplate>
                     Car Id: <%# DataBinder.Eval(Container.DataItem, "id") %>
                     <br />
@@ -99,17 +100,27 @@
                     <br />
                     Type Name: <%# DataBinder.Eval(Container.DataItem, "name") %>
                     <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
-                        id="car_edit" Text="Edit " CommandName="Edit" runat="server" />
+                        id="car_edit" Text="Edit" CommandName="Edit" runat="server" />
                 </ItemTemplate>
                 <EditItemTemplate>
-                    Car Id:  <asp:textbox
-                        class="w3-input w3-border w3-light-grey w3-threequarter" placeholder=<%# DataBinder.Eval(Container.DataItem, "id") %> id="UserName"
+                    <div class="w3-left">Car Id: </div>
+                    <asp:Label class="w3-left" width=100 height=30 style="margin-left: 0.5%;"
+                        id="edit_car_id" Text=<%# DataBinder.Eval(Container.DataItem, "id") %> runat="server" />
+                    </asp:textbox>
+                    <br />
+                    <div class="w3-left">Type Id: </div>
+                    <asp:textbox class="w3-input w3-border w3-light-grey w3-left" style="margin-left: 0.5%;" width=100
+                        height=30 text=<%# DataBinder.Eval(Container.DataItem, "type_id") %> id="edit_car_type_id"
                         runat="server">
                     </asp:textbox>
                     <br />
-                    Type Id: <%# DataBinder.Eval(Container.DataItem, "type_id") %>
-                    <br />
                     Type Name: <%# DataBinder.Eval(Container.DataItem, "name") %>
+                    <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
+                        id="car_update" Text="Update" CommandName="Update" runat="server" style="margin-left: 3%;" />
+                    <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
+                        id="car_delete" Text="Delete" CommandName="Delete" runat="server" style="margin-left: 3%;" />
+                    <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
+                        id="car_cancel" Text="Cancel" CommandName="Cancel" runat="server" />
                 </EditItemTemplate>
 
             </asp:DataList>
