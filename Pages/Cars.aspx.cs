@@ -38,7 +38,7 @@ namespace asp
 
             db_connection.Open();
 
-            SqlCommand select_all_car_ids = new SqlCommand("SELECT DISTINCT car_types.id FROM car_types WHERE EXISTS (SELECT * FROM cars WHERE car_types.id = type_id AND NOT EXISTS (SELECT * FROM bookings WHERE cars.id = car_id AND days_to_drop >= " + Session["days_to_drop"] + " AND days_to_pick <= " + Session["days_to_pick"] + "))", db_connection);
+            SqlCommand select_all_car_ids = new SqlCommand("SELECT * FROM car_types WHERE EXISTS (SELECT * FROM cars WHERE car_types.id = type_id AND NOT EXISTS (SELECT * FROM bookings WHERE cars.id = car_id AND days_to_drop >= " + Session["days_to_drop"] + " AND days_to_pick <= " + Session["days_to_pick"] + "))", db_connection);
             SqlDataAdapter adapter_all_car_ids = new SqlDataAdapter(select_all_car_ids);
 
             adapter_all_car_ids.Fill(dataset_all_car_ids, "car_types");
@@ -62,6 +62,12 @@ namespace asp
                     reserve_button.Enabled = false;
                     reserve_button.Text = " Please Search Before Booking !!! ";
                 }
+            }
+
+            int i = 0;
+            foreach (RepeaterItem item in car_repeater.Items){
+                Image car_img = (Image)item.FindControl("car_img");
+                car_img.ImageUrl = "/jpgs/" + dataset_all_car_ids.Tables["car_types"].Rows[i++][7].ToString().Trim() + ".jpg";
             }
         }
 

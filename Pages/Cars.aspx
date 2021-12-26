@@ -50,19 +50,19 @@
             <ItemTemplate>
                 <div class="w3-main w3-white" style="margin-left:400px">
 
-                    <img class="w3-image" src="/jpgs/start_car.jpg" alt="The Car"
-                        style="min-width:1000px; margin-left:30px; padding-top:80px;" width="1500" height="800">
-                    <div class="w3-container">
-                        <h4><strong>The space</strong></h4>
+                    <asp:Image ID="car_img" runat="server" class="w3-image" style="margin-left: 5%;" AlternateText="Car Img" />
+                    <div class="w3-container w3-center">
+                        <h4 class="w3-center" style="font-size: xx-large;"><strong><%#Eval("name") %></strong></h4>
                         <div class="w3-row w3-large">
                             <div class="w3-col s6">
-                                <p><i class="fa fa-fw fa-male"></i> Max people: 4</p>
-                                <p><i class="fa fa-fw fa-bath"></i> Bathrooms: 2</p>
-                                <p><i class="fa fa-fw fa-bed"></i> Bedrooms: 1</p>
+                                <p><i class="fa fa-fw fa-usd"></i> Daily Cost: <%#Eval("daily_cost") %></p>
+                                <p><i class="fa fa-fw fa-folder"></i> Doors: <%#Eval("door") %></p>
+                                <p><i class="fa fa-fw fa-user-o"></i> Passengers: <%#Eval("passenger") %></p>
                             </div>
                             <div class="w3-col s6">
-                                <p><i class="fa fa-fw fa-clock-o"></i> Check In: After 3PM</p>
-                                <p><i class="fa fa-fw fa-clock-o"></i> Check Out: 12PM</p>
+                                <p><i class="fa fa-fw fa-gears"></i> Transmission: <%#Eval("transmission") %></p>
+                                <p><i class="fa fa-fw fa-thermometer-full"></i> AC: <%#Eval("ac") %></p>
+                                <p><i class="fa fa-fw fa-battery-full"></i> Fuel: <%#Eval("fuel") %></p>
                             </div>
                         </div>
                         <hr>
@@ -70,12 +70,12 @@
                         <h4><strong>Amenities</strong></h4>
                         <div class="w3-row w3-large">
                             <div class="w3-col s6">
-                                <p><i class="fa fa-fw fa-shower"></i> Shower</p>
+                                <p><i class="fa fa-fw fa-signal"></i> Navigation</p>
                                 <p><i class="fa fa-fw fa-wifi"></i> WiFi</p>
                                 <p><i class="fa fa-fw fa-tv"></i> TV</p>
                             </div>
                             <div class="w3-col s6">
-                                <p><i class="fa fa-fw fa-cutlery"></i> Kitchen</p>
+                                <p><i class="fa fa-fw fa-cutlery"></i> Meals</p>
                                 <p><i class="fa fa-fw fa-thermometer"></i> Heating</p>
                                 <p><i class="fa fa-fw fa-wheelchair"></i> Accessible</p>
                             </div>
@@ -83,9 +83,9 @@
                         <hr>
 
                         <asp:Button ID="reserve_button" runat="server" Text=" Click to Reserve Right Now !! "
-                            class="w3-button w3-deep-orange"
-                            style="margin-left: 35%; padding-right: 5%; padding-left: 5%;" Font-Size="Large"
-                            OnCommand="reserve_clicked" CommandArgument='<%# Container.ItemIndex + 1%>' />
+                            class="w3-button w3-deep-orange" style="padding-right: 5%; padding-left: 5%;"
+                            Font-Size="Large" OnCommand="reserve_clicked"
+                            CommandArgument='<%# Container.ItemIndex + 1%>' />
                         <h4><strong>Extra Info</strong></h4>
                         <p>Our apartment is really clean and we like to keep it that way. Enjoy the lorem ipsum dolor
                             sit
