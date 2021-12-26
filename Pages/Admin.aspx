@@ -71,17 +71,48 @@
         </asp:Login>
     </div>
     <!-- Admin Control Panel If Logged In -->
-    <asp:Panel ID="logged_in_panel" runat="server" style="margin-top: -4%;">
-        <div class="w3-sidebar w3-bar-block w3-light-grey w3-card"
-            style="width:130px">
+    <asp:Panel ID="logged_in_panel" runat="server" style="margin-top: -2.7%;">
+        <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:130px">
             <h5 class="w3-bar-item">Tables</h5>
             <asp:Button CssClass="w3-bar-item w3-button w3-hover-red" id="car_types_tab" Text="Car Types"
                 OnClick="car_types_tab_clicked" runat="server" />
-            <asp:Button CssClass="w3-bar-item w3-button w3-hover-red" id="cars_tab" Text="Cars" OnClick="cars_tab_clicked"
-                runat="server" />
+            <asp:Button CssClass="w3-bar-item w3-button w3-hover-red" id="cars_tab" Text="Cars"
+                OnClick="cars_tab_clicked" runat="server" />
             <asp:Button CssClass="w3-bar-item w3-button w3-hover-red" id="Bookings_tab" Text="Bookings"
                 OnClick="bookings_tab_clicked" runat="server" />
         </div>
-    </asp:Panel>
 
+        <asp:Panel ID="home" runat="server" style="margin-left: 10%;">
+            <div class="w3-panel w3-red" style="width: 96%;">
+                <h1>Login Succeeded</h1>
+                <h3>Please select a table to edit from the navigation bar.</h3>
+            </div>
+        </asp:Panel>
+        <asp:Panel ID="cars_panel" runat="server" style="margin-left: 10%;">
+            <asp:DataList CssClass="w3-table-all w3-xlarge" style="width: 97%;" id="car_list" BorderColor="black"
+                CellPadding="5" CellSpacing="5" RepeatDirection="Vertical" RepeatLayout="Table" runat="server"
+                OnEditCommand="edit_command">
+                <ItemTemplate>
+                    Car Id: <%# DataBinder.Eval(Container.DataItem, "id") %>
+                    <br />
+                    Type Id: <%# DataBinder.Eval(Container.DataItem, "type_id") %>
+                    <br />
+                    Type Name: <%# DataBinder.Eval(Container.DataItem, "name") %>
+                    <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
+                        id="car_edit" Text="Edit " CommandName="Edit" runat="server" />
+                </ItemTemplate>
+                <EditItemTemplate>
+                    Car Id:  <asp:textbox
+                        class="w3-input w3-border w3-light-grey w3-threequarter" placeholder=<%# DataBinder.Eval(Container.DataItem, "id") %> id="UserName"
+                        runat="server">
+                    </asp:textbox>
+                    <br />
+                    Type Id: <%# DataBinder.Eval(Container.DataItem, "type_id") %>
+                    <br />
+                    Type Name: <%# DataBinder.Eval(Container.DataItem, "name") %>
+                </EditItemTemplate>
+
+            </asp:DataList>
+        </asp:Panel>
+    </asp:Panel>
 </asp:content>
