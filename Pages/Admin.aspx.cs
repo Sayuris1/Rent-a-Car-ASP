@@ -178,7 +178,7 @@ namespace asp.Pages
             if (is_type_id_exist(update_type_id)){
                 // If exist, update
                 database_helper db_helper = new database_helper();
-                db_helper.execute_new_update_command("Update cars SET type_id=" + update_type_id + "WHERE id=" + update_id);
+                db_helper.execute_new_update_command($"Update cars SET type_id={update_type_id}WHERE id={update_id}");
                 db_helper.dispose_all_and_close();
             }
             else
@@ -196,7 +196,7 @@ namespace asp.Pages
             if (is_type_id_exist(add_type_id)){
                 // If exist, add
                 database_helper db_helper = new database_helper();
-                db_helper.execute_new_insert_command("INSERT INTO cars (type_id) VALUES (" + add_type_id + ")");
+                db_helper.execute_new_insert_command($"INSERT INTO cars (type_id) VALUES ({add_type_id})");
                 db_helper.dispose_all_and_close();
             }
             else
@@ -211,19 +211,87 @@ namespace asp.Pages
         // ********** Car types table functions ***********
         // ************************************************
 
-        protected void car_types_edit(object sender, EventArgs e){
+        protected void car_types_edit(object sender, DataListCommandEventArgs e){
+            // Make edit view visible
+            car_types_list.EditItemIndex = e.Item.ItemIndex;
+
+            fill_car_types_datalist();
         }
 
-        protected void car_types_cancel(object sender, EventArgs e){
+        protected void car_types_cancel(object sender, DataListCommandEventArgs e){
+            // Make edit view visible
+            car_types_list.EditItemIndex = -1;
+
+            fill_car_types_datalist();
         }
 
-        protected void car_types_delete(object sender, EventArgs e){
+        protected void car_types_delete(object sender, DataListCommandEventArgs e){
+            // Make edit view not visible
+            car_types_list.EditItemIndex = -1;
+
+            // Delete
+            string delete_id = ((Label)e.Item.FindControl("car_type_edit_id")).Text;
+
+            database_helper db_helper = new database_helper();
+            db_helper.execute_new_delete_command("DELETE FROM car_types WHERE id=" + delete_id);
+            db_helper.dispose_all_and_close();
+
+            // Refill
+            fill_car_types_datalist();
         }
 
-        protected void car_types_update(object sender, EventArgs e){
+        protected void car_types_update(object sender, DataListCommandEventArgs e){
+            // Make edit view not visible
+            car_types_list.EditItemIndex = -1;
+
+            // Get strings
+            string update_id = ((Label)e.Item.FindControl("car_type_edit_id")).Text;
+            string update_daily_cost = ((TextBox)e.Item.FindControl("edit_daily_cost")).Text;
+            string update_door = ((TextBox)e.Item.FindControl("edit_door")).Text;
+            string update_passenger = ((TextBox)e.Item.FindControl("edit_passenger")).Text;
+            string update_transmission = ((TextBox)e.Item.FindControl("edit_transmission")).Text.Trim();
+            string update_ac = ((TextBox)e.Item.FindControl("edit_ac")).Text;
+            string update_fuel = ((TextBox)e.Item.FindControl("edit_fuel")).Text.Trim();
+            string update_name = ((TextBox)e.Item.FindControl("edit_name")).Text.Trim();
+
+            // True is a string
+            if(update_ac == "True")
+                update_ac = "1";
+            else
+                update_ac = "0";
+
+            // Update
+            database_helper db_helper = new database_helper();
+            db_helper.execute_new_update_command($"UPDATE car_types SET daily_cost={update_daily_cost}, door={update_door}, passenger={update_passenger}, transmission='{update_transmission}'");
+            db_helper.dispose_all_and_close();
+
+            // Refill
+            fill_car_types_datalist();
         }
 
-        protected void car_types_add(object sender, EventArgs e){
+        protected void add_car_type(object sender, EventArgs e){
+            // Get strings
+            string update_daily_cost = ((TextBox)Master.FindControl("MainContent").FindControl("add_daily_cost")).Text;
+            string update_door = ((TextBox)Master.FindControl("MainContent").FindControl("add_door")).Text;
+            string update_passenger = ((TextBox)Master.FindControl("MainContent").FindControl("add_passenger")).Text;
+            string update_transmission = ((TextBox)Master.FindControl("MainContent").FindControl("add_transmission")).Text.Trim();
+            string update_ac = ((TextBox)Master.FindControl("MainContent").FindControl("add_ac")).Text;
+            string update_fuel = ((TextBox)Master.FindControl("MainContent").FindControl("add_fuel")).Text.Trim();
+            string update_name = ((TextBox)Master.FindControl("MainContent").FindControl("add_name")).Text.Trim();
+
+            // True is a string
+            if(update_ac == "True")
+                update_ac = "1";
+            else
+                update_ac = "0";
+
+            // Add
+            database_helper db_helper = new database_helper();
+            db_helper.execute_new_insert_command($"INSERT INTO car_types (daily_cost, door, passenger, transmission, ac, fuel, name) VALUES ({update_daily_cost}, {update_door}, {update_passenger}, '{update_transmission}', {update_ac}, '{update_fuel}', '{update_name}')");
+            db_helper.dispose_all_and_close();
+
+            // Refill
+            fill_car_types_datalist();
         }
     }
 }
