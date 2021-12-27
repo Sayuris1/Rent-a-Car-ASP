@@ -88,11 +88,11 @@
                 <h3>Please select a table to edit from the navigation bar.</h3>
             </div>
         </asp:Panel>
-        <asp:Panel ID="cars_panel" runat="server" style="margin-left: 10%;">
+        <asp:Panel visible=false ID="cars_panel" runat="server" style="margin-left: 10%;">
             <asp:DataList CssClass="w3-table-all w3-xlarge" style="width: 97%;" id="car_list" BorderColor="black"
                 CellPadding="5" CellSpacing="5" RepeatDirection="Vertical" RepeatLayout="Table" runat="server"
-                OnEditCommand="edit_command" OnUpdateCommand="update_command" OnDeleteCommand="delete_command"
-                OnCancelCommand="cancel_command">
+                OnEditCommand="car_edit" OnUpdateCommand="car_update" OnDeleteCommand="car_delete"
+                OnCancelCommand="car_cancel">
                 <ItemTemplate>
                     Car Id: <%# DataBinder.Eval(Container.DataItem, "id") %>
                     <br />
@@ -100,12 +100,12 @@
                     <br />
                     Type Name: <%# DataBinder.Eval(Container.DataItem, "name") %>
                     <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
-                        id="car_edit" Text="Edit" CommandName="Edit" runat="server" />
+                        id="car_edit_button" Text="Edit" CommandName="Edit" runat="server" />
                 </ItemTemplate>
                 <EditItemTemplate>
                     <div class="w3-left">Car Id: </div>
-                    <asp:Label class="w3-left" width=100 height=30 style="margin-left: 0.5%;"
-                        id="edit_car_id" Text=<%# DataBinder.Eval(Container.DataItem, "id") %> runat="server" />
+                    <asp:Label class="w3-left" width=100 height=30 style="margin-left: 0.5%;" id="edit_car_id"
+                        Text=<%# DataBinder.Eval(Container.DataItem, "id") %> runat="server" />
                     </asp:textbox>
                     <br />
                     <div class="w3-left">Type Id: </div>
@@ -116,13 +116,30 @@
                     <br />
                     Type Name: <%# DataBinder.Eval(Container.DataItem, "name") %>
                     <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
-                        id="car_update" Text="Update" CommandName="Update" runat="server" style="margin-left: 3%;" />
+                        id="car_update_button" Text="Update" CommandName="Update" runat="server" style="margin-left: 3%;" />
                     <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
-                        id="car_delete" Text="Delete" CommandName="Delete" runat="server" style="margin-left: 3%;" />
+                        id="car_delete_button" Text="Delete" CommandName="Delete" runat="server" style="margin-left: 3%;" />
                     <asp:LinkButton class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-right"
-                        id="car_cancel" Text="Cancel" CommandName="Cancel" runat="server" />
+                        id="car_cancel_button" Text="Cancel" CommandName="Cancel" runat="server" />
                 </EditItemTemplate>
-
+            </asp:DataList>
+            <div class="w3-left" style="font-size: 200%; margin-top: 1.5%;">Type Id: </div>
+            <asp:textbox class="w3-input w3-left w3-border w3-light-grey"
+                style="margin-left: 0.5%; margin-top: 1.6%; font-size: 200%;" width=100 height=30 id="add_car_type_id"
+                runat="server" />
+            <asp:Button class="w3-button w3-dark-grey w3-light w3-hover-red w3-round-xxlarge w3-xlarge" id="add_button"
+                Text="Add" style="margin-left: 1%; margin-top: 1%;" OnCommand="add_car" runat="server" />
+            </div>
+        </asp:Panel>
+        <asp:Panel ID="car_types_panel" runat="server" style="margin-left: 10%;">
+            <asp:DataList CssClass="w3-table-all w3-xlarge" style="width: 97%;" id="car_types_list" BorderColor="black"
+                CellPadding="5" CellSpacing="5" RepeatDirection="Vertical" RepeatLayout="Table" runat="server"
+                OnEditCommand="car_types_edit" OnUpdateCommand="car_types_update" OnDeleteCommand="car_types_delete"
+                OnCancelCommand="car_types_cancel">
+                <ItemTemplate>
+                </ItemTemplate>
+                <EditItemTemplate>
+                </EditItemTemplate>
             </asp:DataList>
         </asp:Panel>
     </asp:Panel>
