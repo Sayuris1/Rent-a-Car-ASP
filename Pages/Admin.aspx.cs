@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
-using System.Web.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace asp.Pages
 {
-    public partial class Admin : database_helper
-    {
+    public partial class Admin : database_helper {
         static bool is_logged_in = false;
 
         static string last_clicked;

@@ -7,8 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace asp
 {
-    public partial class _Default : Page
-    {
+    public partial class _Default : Page {
         static DateTime pick_date_time = new DateTime();
         static DateTime drop_date_time = new DateTime();
 
