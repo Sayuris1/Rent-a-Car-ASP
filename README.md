@@ -1,7 +1,8 @@
-# rent_a_car_asp
-A old school rent a car asp.net framework website with MSSQL database
+# Rent a Car Site Using ASP.Net and MSSQL
 
-Review pdfine odev.pdf'den ulasabilirsiniz.
-car_sql.bak bir MS SQL backup filedir. Bunu kullanarak database'i olusturabilirsiniz.
-Eger site local_serverinizi otomatik olarak gormesse Web.config'de 42. Satirdaki connectionString'i duzenlemeniz gerekebilir. DataSource olarak local_serveri
+BLM4531 dersi için hazırlanmış bir internet sitesi. Detaylı bilgi için odev.pdf'e bakabilirsiniz.
+
+
+car_sql.bak bir MSSQL backup dosyasıdır. Bunu kullanarak database'i olusturabilirsiniz.
+Eger site local_server'inizi otomatik olarak gormesse Web.config'de 42. satirdaki connectionString'i duzenlemeniz gerekebilir. DataSource olarak local_server'i
 dogru girdiginize emin olunuz.
