@@ -1,8 +1,6 @@
 # Rent a Car Site Using ASP.Net and MSSQL
 
-BLM4531 dersi için hazırlanmış bir internet sitesi. Detaylı bilgi için odev.pdf'e bakabilirsiniz.
+A website prepared for BLM4531 course. For detailed information in Turkish, see odev.pdf.
 
 
-Car_sql.bak bir MSSQL backup dosyasıdır. Bunu kullanarak database'i olusturabilirsiniz.
-Eger site local_server'inizi otomatik olarak gormesse Web.config'de 42. satirdaki connectionString'i duzenlemeniz gerekebilir. DataSource olarak local_server'i
-dogru girdiginize emin olunuz.
+Car_sql.bak is an MSSQL backup file. You can create the database using it. If the site does not automatically recognise your local_server, you may need to edit the connectionString in line 42 of Web.config. Set local_server as DataSource. Make sure you enter it correctly.
